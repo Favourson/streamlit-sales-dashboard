@@ -2,7 +2,7 @@
 
 An interactive BI dashboard built with Streamlit and Plotly. Filters sales data in real-time across regions, segments, products, and reps — with KPI cards, trend charts, a rep leaderboard, and a live data explorer.
 
-**[→ Live Dashboard](https://your-app-url.streamlit.app)** *(update after deployment)*
+**[→ Live Dashboard](https://favour-sales-dashboard.streamlit.app)**
 
 ---
 
