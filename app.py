@@ -112,49 +112,36 @@ df = load_data()
 # SIDEBAR FILTERS
 # ══════════════════════════════════════════════════════════════
 
-with st.sidebar:
-    st.markdown("## 📊 Dashboard Filters")
-    st.markdown("---")
+# ── Top filter bar ────────────────────────────────────────────
+st.markdown('<div class="section-header">// Filters</div>', unsafe_allow_html=True)
+min_date = df["date"].min().date()
+max_date = df["date"].max().date()
 
-    # Date range
-    st.markdown("**Date Range**")
-    min_date = df["date"].min().date()
-    max_date = df["date"].max().date()
+f1, f2, f3, f4, f5, f6 = st.columns(6)
+with f1:
     date_from, date_to = st.date_input(
-        "Select range",
+        "Date Range",
         value=(min_date, max_date),
         min_value=min_date,
         max_value=max_date,
-        label_visibility="collapsed"
     )
-
-    st.markdown("**Region**")
+with f2:
     regions = ["All"] + sorted(df["region"].unique().tolist())
-    selected_region = st.selectbox("Region", regions, label_visibility="collapsed")
-
-    st.markdown("**Customer Segment**")
+    selected_region = st.selectbox("Region", regions)
+with f3:
     segments = ["All"] + sorted(df["segment"].unique().tolist())
-    selected_segment = st.selectbox("Segment", segments, label_visibility="collapsed")
-
-    st.markdown("**Category**")
+    selected_segment = st.selectbox("Segment", segments)
+with f4:
     categories = ["All"] + sorted(df["category"].unique().tolist())
-    selected_category = st.selectbox("Category", categories, label_visibility="collapsed")
-
-    st.markdown("**Sales Rep**")
+    selected_category = st.selectbox("Category", categories)
+with f5:
     reps = ["All"] + sorted(df["sales_rep"].unique().tolist())
-    selected_rep = st.selectbox("Sales Rep", reps, label_visibility="collapsed")
-
-    st.markdown("**Sales Channel**")
+    selected_rep = st.selectbox("Sales Rep", reps)
+with f6:
     channels = ["All"] + sorted(df["channel"].unique().tolist())
-    selected_channel = st.selectbox("Channel", channels, label_visibility="collapsed")
+    selected_channel = st.selectbox("Channel", channels)
 
-    st.markdown("---")
-    st.markdown(
-        "<div style='font-size:11px;color:#555e72;'>Built by Favour Emmanson<br>"
-        "<a href='https://github.com/Favourson' style='color:#4f9cf9;'>GitHub</a> · "
-        "<a href='https://www.linkedin.com/in/favour-emmanson' style='color:#4f9cf9;'>LinkedIn</a></div>",
-        unsafe_allow_html=True
-    )
+st.markdown("<br>", unsafe_allow_html=True)
 
 # ── Apply filters ─────────────────────────────────────────────
 filtered = df[
