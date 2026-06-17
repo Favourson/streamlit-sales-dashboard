@@ -74,6 +74,7 @@ st.markdown("""
 
     /* Hide streamlit branding */
     #MainMenu {visibility: hidden;}
+    [data-testid="collapsedControl"] { display: block !important; color: white !important; }
     footer {visibility: hidden;}
     header {visibility: hidden;}
     
